@@ -3,4 +3,15 @@
     <string name="app_name">MyActivity</string>
     <string name="explanation">This simple Android application
         illustrates the mainstream Android development workflow in IntelliJ IDEA.</string>
+    <string name="pedometer_label">Default String</string>
+    <string name="button_on_text">Turn Off</string>
+    <string name="button_off_text">Turn On</string>
+    <string name="view_prompt">Choose View</string>
+    <string-array name="views">
+        <item>View 1</item>
+        <item>View 2</item>
+        <item>View 3</item>
+        <item>View 4</item>
+    </string-array>
+
 </resources>
