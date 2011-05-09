@@ -9,5 +9,10 @@
     android:layout_height="wrap_content" 
     android:text="Hello World, MyActivity"
     />
+<TextView android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/explanation"
+    android:textColor="@color/string_color"
+    />
 </LinearLayout>
 
