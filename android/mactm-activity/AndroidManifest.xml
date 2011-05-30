@@ -3,14 +3,47 @@
       package="edu.ucla.cs.m117.grad"
       android:versionCode="1"
       android:versionName="1.0">
-    <application android:label="mactm-activity" android:icon="@drawable/icon">
-        <activity android:name="MyActivity"
-                  android:label="@string/app_name"
-                  android:screenOrientation="portrait">
+    <application 
+	android:label="mactm-activity" 
+	android:icon="@drawable/icon"
+	android:debuggable="true">
+        <activity 
+			android:name="MyActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action 
+					android:name="android.intent.action.MAIN" />
+                <category 
+				android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+        
+        <service android:name="edu.ucla.cs.m117.grad.PedometerSensorService">
+			<intent-filter>
+				<action 
+				android:name="edu.ucla.cs.m117.grad.MyService" />
+			</intent-filter>
+		</service>
+			
+		<receiver android:name="ActivityWidget" 
+			android:label="@string/app_name">
+			<intent-filter>
+				<action 
+					android:name="edu.ucla.cs.m117.grad.DESKTOP_WIDGET_RCV" />
+				<action 
+					android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+			</intent-filter>
+			<meta-data 
+				android:name="android.appwidget.provider"
+				android:resource="@xml/widget_provider_info" />
+		</receiver>
+	</application>
+	
+	<uses-permission android:name="android.permission.INTERNET"></uses-permission>
+	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+	<uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"></uses-permission>
+	<uses-permission android:name="android.permission.WAKE_LOCK" />
+	<uses-permission android:name="android.permission.DISABLE_KEYGUARD"></uses-permission>
+	<uses-permission android:name="android.permission.READ_PHONE_STATE"></uses-permission>
 </manifest> 

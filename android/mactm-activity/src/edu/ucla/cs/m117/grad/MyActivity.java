@@ -6,11 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import edu.ucla.cs.m117.grad.graphs.GraphView;
-
-import java.util.Date;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.os.IBinder;
+import android.os.RemoteException;
 
 public class MyActivity extends Activity
 {
+    private boolean bServicesStarted = false;
+    private ISensorService2 iss2Pedometer;
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -46,6 +53,13 @@ public class MyActivity extends Activity
                 }
             }
         });
+
+		// @niranjanr 
+        Intent intentPedometerSercice = new Intent();			        	// create the intent for the service
+        intentPedometerSercice.setAction("edu.ucla.cs.m117.grad.MyService");// this "action" string comes from AndroidManifest.xml
+        startService(intentPedometerSercice);								// call to start all services	
+        MyBindService();													// bind the started service to this component 
+        bServicesStarted = true;
     }
 
     public void changeWidgetView(boolean displayWidgets) {
@@ -93,4 +107,78 @@ public class MyActivity extends Activity
             pedoOnLayout.setVisibility(View.GONE);
         }
     }
+    // FUNCTION: OnDestroy
+    public void onDestroy() 
+    {
+		super.onDestroy();				// destroy base classes
+		MyUnRegisterCallbacks();		// unregister call backs
+		MyUnBindService();				// release the created service
+	}
+
+    // FUNCTION: MyBindService
+    // bind the service to this component 
+    private void MyBindService()
+    {
+	    Intent intentBindService = new Intent("edu.ucla.cs.m117.grad.PedometerSensorService");
+	    bindService(intentBindService, sscPedometer, Context.BIND_AUTO_CREATE);
+    }
+  
+    // FUNCTION: MyUnBindService
+    // unbind the service at the end
+    private void MyUnBindService()
+    {
+    	if(bServicesStarted)
+    	{
+    		unbindService(sscPedometer);
+    	}
+    }
+
+    // FUNCTION: UnRegisterCallbacks
+    // Release the earlier registered Callback
+    // -- the exception must be caught!
+    private void	MyUnRegisterCallbacks()
+    {
+		try 
+		{
+			if(bServicesStarted)
+			{
+				iss2Pedometer.unregisterCallback(mCallback);
+			}
+		} 
+		catch (RemoteException re) 
+		{
+			re.printStackTrace();
+		}
+    }
+    
+    // Create the connection between the service and this activity component
+    private ServiceConnection sscPedometer = new ServiceConnection() 
+    {
+    	// FUNCTION: OnServiceConnected
+    	// -- exception must be handled within try catch
+    	public void onServiceConnected(ComponentName name, IBinder service) 
+    	{
+    		iss2Pedometer = ISensorService2.Stub.asInterface(service);	
+    		try 
+    		{			
+    			iss2Pedometer.registerCallback(mCallback);
+    		} 
+    		catch (RemoteException e) 
+    		{				
+    			e.printStackTrace();
+    		}
+    	}
+
+    	// FUNCTION: OnServiceDisconnected
+    	// -- just set the object to null
+    	public void onServiceDisconnected(ComponentName name) 
+    	{
+    		iss2Pedometer = null;			
+    	}		
+    };
+    
+    // ICallback Interface 
+    private ICallBack mCallback = new ICallBack.Stub()
+    {
+	};
 }

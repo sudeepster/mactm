@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="wrap_content" 
+	android:orientation="horizontal"
+	android:layout_gravity="left" 
+	android:padding="10sp"
+	android:layout_height="wrap_content" 
+	android:background="@drawable/widgetbackground0">
+			
+	<LinearLayout 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content" 
+		android:orientation="vertical"
+		android:layout_gravity="center">	
+		<ImageView 
+			android:id="@+id/desktop_widget_image"
+			android:layout_width="wrap_content" 
+			android:layout_height="wrap_content"
+			android:src="@drawable/runner"
+			android:layout_weight="1" />	
+	</LinearLayout>
+
+	<LinearLayout 
+		android:layout_width="wrap_content" 
+		android:layout_height="wrap_content"
+		android:orientation="vertical" 
+		android:layout_gravity="left" 
+		android:layout_weight="1">	
+		<TextView 
+			android:textSize="60px" 
+			android:layout_width="fill_parent" 
+			android:gravity="center" 
+			android:id="@+id/widget_stepsview" 
+			android:layout_weight="3" 
+			android:textColor="#FFFFFF" 
+			android:textStyle="normal|bold" 
+			android:layout_height="wrap_content" 
+			android:layout_gravity="left" 
+			android:text="1">
+		</TextView>	
+		
+		<TextView 
+			android:id="@+id/widget_textview3"
+			android:layout_height="wrap_content" 
+			android:layout_width="wrap_content"
+			android:padding="0dip" 
+			android:textSize="18px" 
+			android:textColor="#AFFFFFFF"
+			android:gravity="bottom" 
+			android:text="Steps"
+			android:layout_weight="1" 
+			android:layout_gravity="bottom"
+			android:layout_marginBottom="10px" />
+	</LinearLayout>
+</LinearLayout>

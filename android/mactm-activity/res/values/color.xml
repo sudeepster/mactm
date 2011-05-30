@@ -1,4 +1,5 @@
 <resources>
     <color name="green">#ff00ff77</color>
     <color name="red">#ffff0000</color>
+	<color name="string_color">#ff00ff77</color>
 </resources>
