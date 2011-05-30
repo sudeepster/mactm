@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">MyActivity</string>
-    <string name="explanation">This simple Android application
-        illustrates the mainstream Android development workflow in IntelliJ IDEA.</string>
+    <string name="app_name">mActm</string>
+    <string name="explanation">Activity Monitoring App</string>
     <string name="pedometer_label">Default String</string>
-    <string name="button_on_text">Turn Off</string>
-    <string name="button_off_text">Turn On</string>
+    <string name="button_on_text">On</string>
+    <string name="button_off_text">Off</string>
     <string name="view_prompt">Choose View</string>
+    <string name="pedometer_OFF_message">Pedometer is OFF</string>
     <string-array name="views">
         <item>View 1</item>
         <item>View 2</item>

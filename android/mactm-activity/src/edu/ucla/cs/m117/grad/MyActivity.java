@@ -19,29 +19,69 @@ public class MyActivity extends Activity
         final ToggleButton toggleButton = (ToggleButton) findViewById(R.id.pedometer_button);
         final TextView pedometerStateLabel = (TextView) findViewById(R.id.pedometer_label);
 
+        toggleButton.setChecked(true);
+
         if (toggleButton.isChecked()) {
+            pedometerStateLabel.setTextColor(R.color.green);
             pedometerStateLabel.setText("Pedometer is On.");
+            changeWidgetView(true);
         } else {
+            pedometerStateLabel.setTextColor(R.color.red);
             pedometerStateLabel.setText("Pedometer is Off.");
+            changeWidgetView(false);
         }
 
         toggleButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 if (toggleButton.isChecked()) {
+                    pedometerStateLabel.setTextColor(R.color.green);
                     pedometerStateLabel.setText("Pedometer is On.");
+                    changeWidgetView(true);
                 } else {
+                    pedometerStateLabel.setTextColor(R.color.red);
                     pedometerStateLabel.setText("Pedometer is Off.");
+                    changeWidgetView(false);
                 }
             }
         });
+    }
 
-    Spinner spinner = (Spinner) findViewById(R.id.view_selector);
-    ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
-            this, R.array.views, android.R.layout.simple_spinner_item);
-    adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    spinner.setAdapter(adapter);
+    public void changeWidgetView(boolean displayWidgets) {
+        if (displayWidgets) {
+            final LinearLayout pedoOnLayout = (LinearLayout)findViewById(R.id.pedoOn);
+            final LinearLayout pedoOffLayout = (LinearLayout)findViewById(R.id.pedoOff);
+            pedoOffLayout.setVisibility(View.GONE);
+            pedoOnLayout.setVisibility(View.VISIBLE);
 
+            Spinner spinner = (Spinner) findViewById(R.id.view_selector);
+            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                    this, R.array.views, android.R.layout.simple_spinner_item);
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinner.setAdapter(adapter);
 
-        //setContentView(R.layout.main);
+            SeekBar sensitivity = (SeekBar) findViewById(R.id.sensitivity_calibrator);
+            final TextView sensitivityValue = (TextView) findViewById(R.id.sensitivity_value);
+
+            sensitivity.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                    sensitivityValue.setText(String.valueOf(i));
+                }
+
+                public void onStartTrackingTouch(SeekBar seekBar) {
+                    //To change body of implemented methods use File | Settings | File Templates.
+                }
+
+                public void onStopTrackingTouch(SeekBar seekBar) {
+                    //To change body of implemented methods use File | Settings | File Templates.
+                }
+            });
+        } else {
+            final LinearLayout pedoOnLayout = (LinearLayout)findViewById(R.id.pedoOn);
+            final LinearLayout pedoOffLayout = (LinearLayout)findViewById(R.id.pedoOff);
+
+            final TextView displayOff = (TextView) findViewById(R.id.pedometer_OFF_message);
+            pedoOffLayout.setVisibility(View.VISIBLE);
+            pedoOnLayout.setVisibility(View.GONE);
+        }
     }
 }

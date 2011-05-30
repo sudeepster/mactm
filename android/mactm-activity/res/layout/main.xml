@@ -4,39 +4,71 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-    <TextView
+<!--    <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Hello World, MyActivity"
         />
+-->
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/explanation"
-        android:textColor="@color/string_color"
+        android:textColor="@color/green"
         />
-
-    <ToggleButton
-        android:id="@+id/pedometer_button"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:textOn="@string/button_on_text"
-        android:textOff="@string/button_off_text"
-        />
-
-    <TextView android:id="@+id/pedometer_label"
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="@string/pedometer_label"
-        android:textColor="@color/string_color"
-        />
-
-    <Spinner
-        android:id="@+id/view_selector"
+            <TextView android:id="@+id/pedometer_label"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="@string/pedometer_label"
+                android:textColor="@color/green"
+                />
+            <ToggleButton
+                android:id="@+id/pedometer_button"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:textOn="@string/button_on_text"
+                android:textOff="@string/button_off_text"
+                />
+    <LinearLayout
+        android:id="@+id/pedoOff"
+        android:orientation="vertical"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:prompt="@string/view_prompt"
-        />
+        >
+        <TextView android:id="@+id/pedometer_OFF_message"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@string/pedometer_OFF_message"
+            android:textColor="@color/red"
+            />
+    </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/pedoOn"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        >
+        <Spinner
+            android:id="@+id/view_selector"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/view_prompt"
+            />
+
+        <SeekBar
+            android:id="@+id/sensitivity_calibrator"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="50"
+            />
+        <TextView
+            android:id="@+id/sensitivity_value"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="50"
+            />
+    </LinearLayout>
 </LinearLayout>
 
