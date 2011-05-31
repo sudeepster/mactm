@@ -8,10 +8,9 @@
     <string name="view_prompt">Choose View</string>
     <string name="pedometer_OFF_message">Pedometer is OFF</string>
     <string-array name="views">
-        <item>View 1</item>
-        <item>View 2</item>
-        <item>View 3</item>
-        <item>View 4</item>
+        <item>daily</item>
+        <item>weekly</item>
+        <item>monthly</item>
     </string-array>
 
 </resources>

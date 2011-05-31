@@ -28,6 +28,7 @@ public final class R {
     }
     public static final class id {
         public static final int desktop_widget_image=0x7f080000;
+        public static final int graphlayout=0x7f08000b;
         public static final int pedoOff=0x7f080005;
         public static final int pedoOn=0x7f080007;
         public static final int pedometer_OFF_message=0x7f080006;

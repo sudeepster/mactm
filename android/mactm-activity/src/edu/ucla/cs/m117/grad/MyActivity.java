@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
+import edu.ucla.cs.m117.grad.utils.MyOnItemSelectedListener;
 
 public class MyActivity extends Activity
 {
@@ -75,6 +76,8 @@ public class MyActivity extends Activity
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinner.setAdapter(adapter);
 
+            spinner.setOnItemSelectedListener(new MyOnItemSelectedListener(getApplicationContext()));
+
             SeekBar sensitivity = (SeekBar) findViewById(R.id.sensitivity_calibrator);
             final TextView sensitivityValue = (TextView) findViewById(R.id.sensitivity_value);
 
@@ -96,15 +99,21 @@ public class MyActivity extends Activity
             String[] verlabels = new String[] { "great", "ok", "bad" };
             String[] horlabels = new String[] { "today", "tomorrow", "next week", "next month" };
             GraphView graphView = new GraphView(this, values, "GraphViewDemo",horlabels, verlabels, GraphView.LINE);
-            addContentView(graphView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
-                    150));
+            /*addContentView(graphView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
+                    150)); */
+            final LinearLayout graphLayout = (LinearLayout)findViewById(R.id.graphlayout);
+            graphLayout.setVisibility(View.VISIBLE);
+            graphLayout.addView(graphView,new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT,
+                    ViewGroup.LayoutParams.FILL_PARENT));
         } else {
             final LinearLayout pedoOnLayout = (LinearLayout)findViewById(R.id.pedoOn);
             final LinearLayout pedoOffLayout = (LinearLayout)findViewById(R.id.pedoOff);
+            final LinearLayout graphLayout = (LinearLayout)findViewById(R.id.graphlayout);
 
             final TextView displayOff = (TextView) findViewById(R.id.pedometer_OFF_message);
             pedoOffLayout.setVisibility(View.VISIBLE);
             pedoOnLayout.setVisibility(View.GONE);
+            graphLayout.setVisibility(View.GONE);
         }
     }
     // FUNCTION: OnDestroy
