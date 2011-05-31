@@ -55,24 +55,10 @@ public class Communicator {
         String response = null;
         try {
             response = sendToServer( request );
-            Log.d( LOG_TAG, "response: "+ response );
-
-            JSONTokener tokener = new JSONTokener( response );
-            Object o = tokener.nextValue();
-            if( o instanceof JSONArray ) {
-                JSONArray array = (JSONArray)o;
-                for( int i = 0 ; i < array.length() ; ++i ) {
-                    // TODO: process array here
-                }
-            } else
-                throw new JSONException( "Top element is not a JSONArray" );
-
+            return response;
         } catch( IOException ex ) {
-            errMsg = "Connection problem";
+            errMsg = "Error";
             Log.e( LOG_TAG, "IOException", ex );
-        } catch( JSONException ex ) {
-            errMsg = "Malformed response";
-            Log.e( LOG_TAG, "Malformed JSON response: "+response, ex );
         }
         return errMsg;
     }

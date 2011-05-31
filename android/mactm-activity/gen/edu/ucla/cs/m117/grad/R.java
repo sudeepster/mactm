@@ -34,9 +34,9 @@ public final class R {
         public static final int pedometer_OFF_message=0x7f080006;
         public static final int pedometer_button=0x7f080004;
         public static final int pedometer_label=0x7f080003;
-        public static final int sensitivity_calibrator=0x7f080009;
-        public static final int sensitivity_value=0x7f08000a;
-        public static final int view_selector=0x7f080008;
+        public static final int sensitivity_calibrator=0x7f080008;
+        public static final int sensitivity_value=0x7f080009;
+        public static final int view_selector=0x7f08000a;
         public static final int widget_stepsview=0x7f080001;
         public static final int widget_textview3=0x7f080002;
     }

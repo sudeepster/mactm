@@ -49,14 +49,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         >
-        <Spinner
-            android:id="@+id/view_selector"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:prompt="@string/view_prompt"
-            />
-
-        <SeekBar
+                <SeekBar
             android:id="@+id/sensitivity_calibrator"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -68,6 +61,13 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="50"
+            />
+
+        <Spinner
+            android:id="@+id/view_selector"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:prompt="@string/view_prompt"
             />
         <LinearLayout
             android:id="@+id/graphlayout"

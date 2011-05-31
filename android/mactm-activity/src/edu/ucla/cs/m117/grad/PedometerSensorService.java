@@ -296,10 +296,14 @@ public class PedometerSensorService extends Service
 				 fMovingAverageBuffer[(iMovingAverageBufferIndex + 1) % iMovingAverageBufferSize]))
 			{
 				// we have detected a STEP !!
-				iStepCount++;
-				fAdjustmentFactor =  sharedPreference.getFloat("SENSITIVITY_ADJUSTMENT_FACTOR", 1.f);
-				iAdjustedStepCount = (int) (fAdjustmentFactor * (float)iStepCount);
-				handle.obtainMessage(0, (int)iAdjustedStepCount, 0).sendToTarget();
+                boolean bPedometerEnabled = sharedPreference.getBoolean("PEDOMETER_ON", true);
+                if(bPedometerEnabled)
+                {
+				    iStepCount++;
+				    fAdjustmentFactor =  sharedPreference.getFloat("SENSITIVITY_ADJUSTMENT_FACTOR", 1.f);
+				    iAdjustedStepCount = (int) (fAdjustmentFactor * (float)iStepCount);
+				    handle.obtainMessage(0, (int)iAdjustedStepCount, 0).sendToTarget();
+                }
 
 				// write the value into the Shared Preferences
 				sharedPreference.edit().putInt("STEP_COUNT", (int)iAdjustedStepCount).commit();

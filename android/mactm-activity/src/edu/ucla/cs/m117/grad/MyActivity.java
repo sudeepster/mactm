@@ -1,15 +1,14 @@
 package edu.ucla.cs.m117.grad;
 
 import android.app.Activity;
+import android.content.*;
 import android.os.Bundle;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
 import edu.ucla.cs.m117.grad.graphs.GraphView;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.IBinder;
 import android.os.RemoteException;
 import edu.ucla.cs.m117.grad.utils.MyOnItemSelectedListener;
@@ -65,6 +64,9 @@ public class MyActivity extends Activity
 
     public void changeWidgetView(boolean displayWidgets) {
         if (displayWidgets) {
+            SharedPreferences sharedPreference		= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            sharedPreference.edit().putBoolean("PEDOMETER_ON", true).commit();
+
             final LinearLayout pedoOnLayout = (LinearLayout)findViewById(R.id.pedoOn);
             final LinearLayout pedoOffLayout = (LinearLayout)findViewById(R.id.pedoOff);
             final LinearLayout graphLayout = (LinearLayout)findViewById(R.id.graphlayout);
@@ -87,6 +89,9 @@ public class MyActivity extends Activity
             sensitivity.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
                     sensitivityValue.setText(String.valueOf(i));
+                    SharedPreferences sharedPreference		= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    float fSensitivity = (float)i / 100.f;
+                    sharedPreference.edit().putFloat("SENSITIVITY_ADJUSTMENT_FACTOR", fSensitivity).commit();
                 }
 
                 public void onStartTrackingTouch(SeekBar seekBar) {
@@ -98,6 +103,9 @@ public class MyActivity extends Activity
                 }
             });
         } else {
+            SharedPreferences sharedPreference		= PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            sharedPreference.edit().putBoolean("PEDOMETER_ON", false).commit();
+
             final LinearLayout pedoOnLayout = (LinearLayout)findViewById(R.id.pedoOn);
             final LinearLayout pedoOffLayout = (LinearLayout)findViewById(R.id.pedoOff);
 
