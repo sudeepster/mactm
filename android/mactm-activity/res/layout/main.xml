@@ -69,14 +69,13 @@
             android:layout_height="wrap_content"
             android:text="50"
             />
+        <LinearLayout
+            android:id="@+id/graphlayout"
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            />
     </LinearLayout>
-    <LinearLayout
-        android:id="@+id/graphlayout"
-        android:orientation="vertical"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-            >
 
-    </LinearLayout>
 </LinearLayout>
 

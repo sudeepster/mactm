@@ -14,11 +14,6 @@ import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.view.View;
 
-/**
-* GraphView creates a scaled line or bar graph with x and y axis labels.
-* @author Arno den Hond
-*
-*/
 public class GraphView extends View {
 
     public static boolean BAR = true;
